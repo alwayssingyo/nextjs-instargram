@@ -8,17 +8,18 @@ import { BsPlusSquare } from 'react-icons/bs';
 import { BsPlusSquareFill } from 'react-icons/bs';
 import { RiSearchLine } from 'react-icons/ri';
 import { RiSearchFill } from 'react-icons/ri';
+import ColorButton from './ColorButton';
 
 export default function Header() {
   const currentPath = usePathname();
 
   return (
-    <nav className='flex justify-between items-center sticky top-0 py-4 px-4 border-b bg-white'>
+    <header className='flex justify-between items-center sticky top-0 py-4 px-4 border-b bg-white z-10'>
       <Link href='/'>
         <h1 className='text-3xl font-bold'>Instagram</h1>
       </Link>
 
-      <div className='flex items-center gap-x-4'>
+      <nav className='flex items-center gap-x-4'>
         <div>
           <Link href='/'>
             <h2>{currentPath === '/' ? <AiFillHome /> : <AiOutlineHome />}</h2>
@@ -38,10 +39,8 @@ export default function Header() {
             </h2>
           </Link>
         </div>
-        <div className='border-2 rounded-md py-1 px-2 border-fuchsia-500'>
-          <Link href=''>Sign in</Link>
-        </div>
-      </div>
-    </nav>
+        <ColorButton text='Sign in' onClick={() => {}} />
+      </nav>
+    </header>
   );
 }
