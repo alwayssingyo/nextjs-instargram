@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { AiOutlineHome } from 'react-icons/ai';
 import { AiFillHome } from 'react-icons/ai';
@@ -12,6 +13,7 @@ import ColorButton from './ColorButton';
 
 export default function Header() {
   const currentPath = usePathname();
+  const { data: session } = useSession();
 
   return (
     <header className='flex justify-between items-center sticky top-0 py-4 px-4 border-b bg-white z-10'>
@@ -39,7 +41,12 @@ export default function Header() {
             </h2>
           </Link>
         </div>
-        <ColorButton text='Sign in' onClick={() => {}} />
+
+        {session ? (
+          <ColorButton text='Sign Out' onClick={() => signOut()} />
+        ) : (
+          <ColorButton text='Sign In' onClick={() => signIn()} />
+        )}
       </nav>
     </header>
   );
